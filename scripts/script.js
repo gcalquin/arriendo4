@@ -46,11 +46,21 @@ class Carro{
 
 function agregarAlCarrito(){
 
+    //Aqui busco el elemento en el arreglo Productos
     algo = prompt("Que desea Agregar al Carrito: ")
     const found = Productos.find(element => element.nombre === algo);
 
+    //Aqui busco el Indice en el arreglo productos
+    const foundIndex = Productos.findIndex(element => element.nombre === algo);
+    alert(foundIndex)
+
     let nombreCapturado = found.nombre;
+    alert("Usted puede agregar maxímo: " + Productos[foundIndex].stock )
     let cantidadCapturada = parseInt(prompt("Cuantas unidades quiere arrendar:"));
+
+    Productos[foundIndex].stock = Productos[foundIndex].stock - cantidadCapturada
+    alert("Ahora quedan: " + Productos[foundIndex].stock )
+
     let diasCapturados = parseInt(prompt("Cuantos días quiere arrendar:"));
     let valorCapturado = found.stock * cantidadCapturada * diasCapturados
     let nuevoAlCarrito = new Carro(nombreCapturado, cantidadCapturada, diasCapturados, valorCapturado)
@@ -91,8 +101,9 @@ function agregarProductos(){
 }
 
 function main(){
-    menu();   
     agregarElementos();
+    menu();   
+   
  }
 
 
@@ -164,8 +175,8 @@ function menu(){
 function agregarElementos(){ 
     var lista=document.getElementById("contenedor-productos"); 
     Productos.forEach(function(data,index){
-    var linew= document.createElement("li");    
-    var contenido = document.createTextNode(data.nombre + " " + data.categoria);
+    var linew= document.createElement("li");
+    var contenido = document.createTextNode(data.nombre + " " + data.categoria + " " + data.stock + " " + data.valor);
     lista.appendChild(linew);
     linew.appendChild(contenido);
     
