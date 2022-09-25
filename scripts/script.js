@@ -45,11 +45,17 @@ class Carro{
 }
 
 function agregarAlCarrito(){
-    let nombreCapturado = Productos[0].nombre;
+
+    algo = prompt("Que desea Agregar al Carrito: ")
+    const found = Productos.find(element => element.nombre === algo);
+
+    let nombreCapturado = found.nombre;
     let cantidadCapturada = parseInt(prompt("Cuantas unidades quiere arrendar:"));
     let diasCapturados = parseInt(prompt("Cuantos días quiere arrendar:"));
-    let valorCapturado = Productos[0].valor * cantidadCapturada * diasCapturados
+    let valorCapturado = found.stock * cantidadCapturada * diasCapturados
     let nuevoAlCarrito = new Carro(nombreCapturado, cantidadCapturada, diasCapturados, valorCapturado)
+
+
 
     Carrito.push(nuevoAlCarrito);
 
@@ -69,6 +75,7 @@ class Producto{
 }
 
 function agregarProductos(){
+    
 
         let nombreCapturado = prompt("Ingrese nombre del Producto: ")
         let categoriaCapturada = prompt("Ingrese categoría del Producto: ")
@@ -125,7 +132,7 @@ function menu(){
     
           
          if (opcion == 3){
-            let producotAAgregar = prompt("Que Producto desea agregar? ")
+            //let producotAAgregar = prompt("Que Producto desea agregar? ")
             agregarAlCarrito();
             console.log(Carrito);
         }
@@ -137,7 +144,8 @@ function menu(){
           }
 
           if (opcion == 5){
-            buscarUnElemento();
+
+            encuentraMiProducto2();
           }
 
           if (opcion == 10){
@@ -166,20 +174,12 @@ function agregarElementos(){
  //Fin funcion agregaElementos()
 
 
-function buscarUnElemento(){
-    let elementoABuscar = prompt("Que elemento desea desea? ")
-    Productos.forEach(elemento =>{
-        if(elemento.nombre === elementoABuscar){
-            console.log("Existe:", elemento.nombre, elemento.stock);
-        }
-    });
+
+function encuentraMiProducto2(){
+    algo = prompt("Que desea encontrar")
+    const found = Productos.find(element => element.nombre === algo);
+    console.log(found)
 }
-
-
-
-
-
-
 
 
 main();
