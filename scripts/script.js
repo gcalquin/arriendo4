@@ -2,6 +2,10 @@ let opcion = 0;
 
 const listaProductos = [];
 
+const contenedorProductos2 = document.getElementById("contenedor-productos2")
+
+const contenedorProductos3 = document.getElementById("contenedor-productos3")
+
 
 
 
@@ -11,7 +15,7 @@ let Productos = [
       "nombre": "Silla Simple",
       "categoria": "Sillas",
       "descripcion": "Silla de plastico",
-      "foto": "",
+      "foto": "https://sodimac.scene7.com/is/image/SodimacCL/2910144_01",
       "stock": 100,
       "valor": 5000
     },
@@ -19,7 +23,7 @@ let Productos = [
         "nombre": "Silla con funda",
         "categoria": "Sillas",
         "descripcion": "Silla de madera con funda color a elección",
-        "foto": "",
+        "foto": "https://dojiw2m9tvv09.cloudfront.net/33039/product/0157-11288.jpg",
         "stock": 75,
         "valor": 7500
     },
@@ -27,10 +31,12 @@ let Productos = [
         "nombre": "Sofa un cuerpo",
         "categoria": "Sofas",
         "descripcion": "Sofa de ratán Largo:80cm Ancho:80cm",
-        "foto": "",
+        "foto": "https://falabella.scene7.com/is/image/Falabella/14519803_1?wid=800&hei=800&qlt=70",
         "stock": 20,
         "valor": 10000
     }
+
+    
 ];
 
 let Carrito = [];
@@ -51,7 +57,7 @@ function agregarAlCarrito(){
     const found = Productos.find(element => element.nombre === algo);
 
     //Aqui busco el Indice en el arreglo productos
-    const foundIndex = Productos.findIndex(element => element.nombre === algo);
+    let foundIndex = Productos.findIndex(element => element.nombre === algo);
     alert(foundIndex)
 
     let nombreCapturado = found.nombre;
@@ -101,8 +107,9 @@ function agregarProductos(){
 }
 
 function main(){
-    agregarElementos();
-    menu();   
+    
+    menu();  
+    //agregarElementos(); 
    
  }
 
@@ -191,6 +198,32 @@ function encuentraMiProducto2(){
     const found = Productos.find(element => element.nombre === algo);
     console.log(found)
 }
+
+
+
+//Ejemplo del profesor para mostrar producto pero ahora con boostrap card
+Productos.forEach((producto) => {
+    let columna = document.createElement("div");
+    columna.className = "col-md-4 mt-3";
+    //columna.id = "columna" + producto.id;
+    columna.nombre = `columna-${producto.nombre}`
+    columna.innerHTML = `
+    <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="${producto.foto}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">${producto.nombre}</h5>
+      <p class="card-text">Categoria: ${producto.categoria}</p>
+      <p class="card-text">Stock: ${producto.stock}</p>
+      <p class="card-text">Valor: ${producto.valor}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+    `
+    contenedorProductos3.append(columna)
+})
+//
+
+
 
 
 main();
