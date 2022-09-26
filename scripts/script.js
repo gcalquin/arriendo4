@@ -6,6 +6,19 @@ const contenedorProductos2 = document.getElementById("contenedor-productos2")
 
 const contenedorProductos3 = document.getElementById("contenedor-productos3")
 
+let botonUno = document.getElementById("btnEventoUno")
+botonUno.addEventListener("click",() => {
+    mostrarProductos();
+})
+
+let botonDos = document.getElementById("btnEventoDos")
+botonDos.onclick = () => {
+    mostrarProductos();
+}
+
+//let botonArrendar = document.getElementById(`botonAgregar-${producto.nombre}`)
+//botonArrendar.onclick = () =>agregarAlCarrito;
+
 
 
 
@@ -202,6 +215,7 @@ function encuentraMiProducto2(){
 
 
 //Ejemplo del profesor para mostrar producto pero ahora con boostrap card
+function mostrarProductos(){
 Productos.forEach((producto) => {
     let columna = document.createElement("div");
     columna.className = "col-md-4 mt-3";
@@ -215,12 +229,14 @@ Productos.forEach((producto) => {
       <p class="card-text">Categoria: ${producto.categoria}</p>
       <p class="card-text">Stock: ${producto.stock}</p>
       <p class="card-text">Valor: ${producto.valor}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <a href="#" class="btn btn-primary">Arrendar</a>
+      <button class="btn btn-primary" id="botonAgregar-${producto.nombre}">Agregar</button>
     </div>
   </div>
     `
     contenedorProductos3.append(columna)
 })
+}
 //
 
 
