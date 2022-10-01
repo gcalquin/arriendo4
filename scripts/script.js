@@ -39,12 +39,10 @@ const renderCarrito = () => {
     div.innerHTML = `
     <p>Producto: ${item.nombre}, Valor: ${item.valor}, Id: ${item.id}</p>  
     <button onclick="eliminarItem(${item.id})">Eliminar del carrito</button> 
-   
-
-        
     `
 
     ContenedorCarrito.append(div)
+    calculartotal()
 
   })
 
@@ -57,8 +55,21 @@ const eliminarItem = (id) => {
   let indice = carrito.indexOf(borrar)
   carrito.splice(indice , 1)
   renderCarrito()
+  calculartotal()
 
 }
+
+const divPrecio = document.querySelector("#precioTotal")
+calculartotal = () => {
+  let cont = 0
+  carrito.forEach((item) => {
+    cont += item.valor
+  })
+
+divPrecio.innerHTML = cont
+
+}
+
 
 
 
