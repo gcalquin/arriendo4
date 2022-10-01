@@ -6,25 +6,55 @@ const contenedorProductos2 = document.getElementById("contenedor-productos2")
 
 const contenedorProductos3 = document.getElementById("contenedor-productos3")
 
-let botonUno = document.getElementById("btnEventoUno")
-botonUno.addEventListener("click",() => {
-    mostrarProductos();
-})
+//let botonUno = document.getElementById("btnEventoUno")
+//botonUno.addEventListener("click",() => {
+//    mostrarProductos();
+//})
 
-let botonDos = document.getElementById("btnEventoDos")
-botonDos.onclick = () => {
-    mostrarProductos();
-}
+//let botonDos = document.getElementById("btnEventoDos")
+//botonDos.onclick = () => {
+//    mostrarProductos();
+//}
 
 //let botonArrendar = document.getElementById(`botonAgregar-${producto.nombre}`)
 //botonArrendar.onclick = () =>agregarAlCarrito;
 
 
+function guardarEnCarrito(productoId){
+  
+  let item = Productos.find((producto)=> producto.id === productoId)
+  carrito.push(item)
+  console.log(carrito)
+
+  renderCarrito();
+
+};
+
+const ContenedorCarrito = document.querySelector('#contenedor')
+
+const renderCarrito = () => {
+  ContenedorCarrito.innerHTML = " "
+  carrito.forEach((item) => {
+    let div = document.createElement('div')
+    div.innerHTML = `
+    <p>Producto: ${item.nombre}, Valor: ${item.valor}</p>
+     
+    
+    `
+
+    ContenedorCarrito.append(div)
+
+  })
+
+
+
+}
 
 
 
 let Productos = [
     {
+      "id": 1,
       "nombre": "Silla Simple",
       "categoria": "Sillas",
       "descripcion": "Silla de plastico",
@@ -33,6 +63,7 @@ let Productos = [
       "valor": 5000
     },
     {
+        "id": 2,
         "nombre": "Silla con funda",
         "categoria": "Sillas",
         "descripcion": "Silla de madera con funda color a elección",
@@ -41,6 +72,7 @@ let Productos = [
         "valor": 7500
     },
     {
+      "id": 3,
         "nombre": "Sofa un cuerpo",
         "categoria": "Sofas",
         "descripcion": "Sofa de ratán Largo:80cm Ancho:80cm",
@@ -52,7 +84,7 @@ let Productos = [
     
 ];
 
-let Carrito = [];
+let carrito = [];
 
 class Carro{
     constructor(nombre, cantidad, dias, valor){
@@ -93,7 +125,8 @@ function agregarAlCarrito(){
 
 
 class Producto{
-    constructor(nombre, categoria, descripcion, foto, stock, valor){
+    constructor(id, nombre, categoria, descripcion, foto, stock, valor){
+    this.id=id;
     this.nombre=nombre;
     this.categoria=categoria;
     this.descripcion=descripcion;
@@ -121,11 +154,14 @@ function agregarProductos(){
 
 function main(){
     
-    menu();  
+    //menu();  
     //agregarElementos(); 
+    mostrarProductos();
    
  }
 
+
+ 
 
  
 // --Mostramos el arreglo completo en consola --
@@ -201,6 +237,8 @@ function agregarElementos(){
     linew.appendChild(contenido);
     
     })
+
+    
     }
  //Fin funcion agregaElementos()
 
@@ -226,20 +264,49 @@ Productos.forEach((producto) => {
     <img class="card-img-top" src="${producto.foto}" alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">${producto.nombre}</h5>
+      <p class="card-text">ID: ${producto.id}</p>
       <p class="card-text">Categoria: ${producto.categoria}</p>
       <p class="card-text">Stock: ${producto.stock}</p>
       <p class="card-text">Valor: ${producto.valor}</p>
-      <a href="#" class="btn btn-primary">Arrendar</a>
-      <button class="btn btn-primary" id="botonAgregar-${producto.nombre}">Agregar</button>
+      <button onclick="guardarEnCarrito(${producto.id})" class="btn btn-primary">Añadir</button>
+
     </div>
   </div>
     `
+    
     contenedorProductos3.append(columna)
+
+
+    function guardarEnCarrito(productoId){
+      alert("toy")
+      let item = Productos.find((producto)=> producto.id === productoId)
+      carrito.push(item)
+      console.log(carrito)
+    
+    };
+
+
+
+
+  //  const boton = document.getElementById('botonAgregar-${producto.nombre}')
+
+    //boton.addEventListener('click', () => {
+      // encuentraMiProducto4(producto.nombre) 
+    //})
+
+
+
+
+
 })
+
+//function encuentraMiProducto4(){
+//    algo = '${producto.nombre}'
+//    const found = Productos.find(element => element.nombre === algo);
+//    Carrito.push(found)
+//}
+
 }
-//
-
-
 
 
 main();
