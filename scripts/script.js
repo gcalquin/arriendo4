@@ -37,9 +37,11 @@ const renderCarrito = () => {
   carrito.forEach((item) => {
     let div = document.createElement('div')
     div.innerHTML = `
-    <p>Producto: ${item.nombre}, Valor: ${item.valor}</p>
-     
-    
+    <p>Producto: ${item.nombre}, Valor: ${item.valor}, Id: ${item.id}</p>  
+    <button onclick="eliminarItem(${item.id})">Eliminar del carrito</button> 
+   
+
+        
     `
 
     ContenedorCarrito.append(div)
@@ -47,6 +49,14 @@ const renderCarrito = () => {
   })
 
 
+
+}
+
+const eliminarItem = (id) => {
+  let borrar = carrito.find((producto) => producto.id === id)
+  let indice = carrito.indexOf(borrar)
+  carrito.splice(indice , 1)
+  renderCarrito()
 
 }
 
