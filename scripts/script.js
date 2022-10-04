@@ -6,6 +6,11 @@ const contenedorProductos2 = document.getElementById("contenedor-productos2")
 
 const contenedorProductos3 = document.getElementById("contenedor-productos3")
 
+let btnLimpiarStorage;
+
+
+
+
 
 
 function guardarEnCarrito(productoId){
@@ -13,7 +18,7 @@ function guardarEnCarrito(productoId){
   let item = Productos.find((producto)=> producto.id === productoId)
   carrito.push(item)
   console.log(carrito)
-
+  actualizarProductosStorage();
   renderCarrito();
 
 };
@@ -44,6 +49,8 @@ const eliminarItem = (id) => {
   carrito.splice(indice , 1)
   renderCarrito()
   calculartotal()
+  actualizarProductosStorage();
+  
 
 }
 
@@ -58,6 +65,13 @@ divPrecio.innerHTML = cont
 
 }
 
+
+let usuario
+
+let formularioIdentificacion
+let contenedorIdentificacion
+let contenedorUsuario
+let textoUsuario
 
 
 
@@ -153,8 +167,48 @@ class Producto{
 
 function main(){
     
+    btnLimpiarStorage=document.getElementById("limpiarStorage")
+
+    
+
+    btnLimpiarStorage.onclick = eliminarStorage;
+
+
+    formularioIdentificacion = document.getElementById("formularioIdentificacion")
+    inputUsuario = document.getElementById("inputUsuario")
+    contenedorIdentificacion = document.getElementById("contenedorIdentificacion")
+    contenedorUsuario = document.getElementById("contenedorUsuario")
+    textoUsuario = document.getElementById("TextoUsuario")
+
+
+    formularioIdentificacion.onsubmit = (event) => identificarUsuario(event)
+
+    function identificarUsuario(event){
+      event.preventDefault()
+      usuario = inputUsuario.value
+      formularioIdentificacion.reset()
+      actualizarUsuarioStorage()
+      mostrarTextoUsuario()
+    }
+
+    function mostrarTextoUsuario(){
+      contenedorIdentificacion.hidden = true
+      contenedorUsuario.hidden = false
+      textoUsuario.innerHTML += `${usuario}`
+    }
+
+    function eliminarStorage(){
+      localStorage.clear();
+      carrito = []
+      renderCarrito();
+      calculartotal();
+    }
 
     mostrarProductos();
+    obtenerProductosStorage();
+    
+
+    
    
  }
 
@@ -235,13 +289,17 @@ columna.innerHTML = `
     contenedorProductos3.append(columna)
 
 
-    function guardarEnCarrito(productoId){
-      alert("toy")
-      let item = Productos.find((producto)=> producto.id === productoId)
-      carrito.push(item)
-      console.log(carrito)
+    //function guardarEnCarrito(productoId){
+    //  alert("toy")
+    //  let item = Productos.find((producto)=> producto.id === productoId)
+    //  console.log("Antes")
+    //  console.log(carrito)
+    //  carrito.push(item)
+    //  console.log("Despues del push")
+    //  console.log(carrito)
+    //  actualizarProductosStorage();
     
-    };
+    //  };
 
 
 
@@ -253,5 +311,34 @@ columna.innerHTML = `
 
 }
 
+
+function actualizarUsuarioStorage(){
+  localStorage.setItem("usuario", usuario)
+}
+
+function actualizarProductosStorage(){
+  let productosJSON = JSON.stringify(Productos);
+  localStorage.setItem("Productos", productosJSON);
+}
+
+
+function obtenerProductosStorage(){
+  let productosJSON = localStorage.getItem("Productos")
+
+  if (productosJSON) {
+    Productos = JSON.parse(productosJSON)
+    alert("Hay productos en memoria, se ejecutara RendeCarrito")
+    renderCarrito();
+  }
+}
+
+
+function obtenerUsuarioStorage(){
+  let usuarioAlmacenado = localStorage.getItem("usuario")
+  if(usuarioAlmacenado){
+    usuario = usuarioAlmacenado
+    mostrarTextoUsuario()
+  }
+}
 
 main();
