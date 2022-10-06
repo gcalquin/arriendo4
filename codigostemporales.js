@@ -130,3 +130,30 @@ function mostrar(){
     console.log("-La cantidad de productos ingresados son: " + Productos.length)
     Productos.forEach(i => console.log(i))  
 }
+
+//Funcion guardar en carrito con un if para no arrendar mas de x cantidades
+function guardarEnCarrito(productoId){
+  
+    let item = Productos.find((producto)=> producto.id === productoId)
+    indice = item.id - 1
+    alert("Puede arrendar un máximo de " + Productos[indice].stock + " De " + Productos[indice].nombre)
+    let cantidadAArrendar = prompt("Cuantas unidades desea arrendar ?")
+    let cantidadAArrendarINT = parseInt(cantidadAArrendar)
+    if(cantidadAArrendarINT <= Productos[indice].stock) {
+      Productos[indice].stock = Productos[indice].stock - cantidadAArrendarINT
+      carrito.push(item)
+      mostrarMensajeConfirmacion();
+    } else {
+      alert("no se puede ya que exede el stock");
+    }
+    
+    
+    console.log("ahora queda en productos"+ Productos[item.id].stock)
+    console.log(Productos)
+    
+    console.log(carrito)
+    actualizarProductosStorage();
+    renderCarrito();
+    //mostrarProductos();
+  
+  };

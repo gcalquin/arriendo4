@@ -16,10 +16,21 @@ let btnLimpiarStorage;
 function guardarEnCarrito(productoId){
   
   let item = Productos.find((producto)=> producto.id === productoId)
-  carrito.push(item)
+
+
+
+    carrito.push(item)
+    mostrarMensajeConfirmacion();
+
+  
+  
+  console.log("ahora queda en productos"+ Productos[item.id].stock)
+  console.log(Productos)
+  
   console.log(carrito)
   actualizarProductosStorage();
   renderCarrito();
+  //mostrarProductos();
 
 };
 
@@ -34,7 +45,10 @@ const renderCarrito = () => {
     <button onclick="eliminarItem(${item.id})">Eliminar del carrito</button> 
     `
 
+
+
     ContenedorCarrito.append(div)
+
     calculartotal()
 
   })
@@ -272,6 +286,8 @@ columna.innerHTML = `
                 <img class="card-img-top" src="${producto.foto}" height="380" alt="Card image cap">
                 <div class="product-detail">
                     <h5 class="card-title heading text-center">${producto.nombre}</h5>
+                    <span class="subheading">Stock: ${producto.stock}</span>
+                    <br>
                     <span class="subheading">${producto.valor}</span>
                     <blockquote>
                    <p>${producto.descripcion}</p>
@@ -285,7 +301,6 @@ columna.innerHTML = `
     </div>
 
 `
-    
     contenedorProductos3.append(columna)
 
 
@@ -339,6 +354,20 @@ function obtenerUsuarioStorage(){
     usuario = usuarioAlmacenado
     mostrarTextoUsuario()
   }
+}
+
+
+function mostrarMensajeConfirmacion(){
+  Toastify({
+    text: "Se agrego su producto al carrito Exitosamente",
+    duration: 3000,
+    close: true,
+    gravity: "top", // `top` or `bottom`
+    position: "right", // `left`, `center` or `right`
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+  }).showToast();
 }
 
 main();
