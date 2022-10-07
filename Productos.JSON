@@ -1,0 +1,56 @@
+[
+    {
+     "nombre": "Licensed Cotton Chair",
+     "categoria": "Oriental",
+     "descripcion": "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+     "foto": "http://loremflickr.com/640/480",
+     "stock": 26,
+     "valor": 47,
+     "id": 1
+    },
+    {
+     "nombre": "Fantastic Granite Hat",
+     "categoria": "Refined",
+     "descripcion": "Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals",
+     "foto": "http://loremflickr.com/640/480",
+     "stock": 45,
+     "valor": 15,
+     "id": 2
+    },
+    {
+     "nombre": "Awesome Metal Chair",
+     "categoria": "Incredible",
+     "descripcion": "The Football Is Good For Training And Recreational Purposes",
+     "foto": "http://loremflickr.com/640/480",
+     "stock": 71,
+     "valor": 13,
+     "id": 3
+    },
+    {
+     "nombre": "Rustic Bronze Shirt",
+     "categoria": "Luxurious",
+     "descripcion": "The Football Is Good For Training And Recreational Purposes",
+     "foto": "http://loremflickr.com/640/480",
+     "stock": 3,
+     "valor": 86,
+     "id": 4
+    },
+    {
+     "nombre": "Small Bronze Car",
+     "categoria": "Unbranded",
+     "descripcion": "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
+     "foto": "http://loremflickr.com/640/480",
+     "stock": 74,
+     "valor": 88,
+     "id": 5
+    },
+    {
+     "nombre": "Modern Steel Sausages",
+     "categoria": "Handcrafted",
+     "descripcion": "Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support",
+     "foto": "http://loremflickr.com/640/480",
+     "stock": 60,
+     "valor": 65,
+     "id": 6
+    }
+   ]
