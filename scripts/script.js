@@ -19,6 +19,14 @@ function guardarEnCarrito(productoId){
 
     carrito.push(item)
     mostrarMensajeConfirmacion();
+    if (carrito.length != 0){
+      mostrarBotonDePago();
+    }
+    else{
+      ocultarBotonDePago();
+    }
+   
+
 
   
   
@@ -28,7 +36,6 @@ function guardarEnCarrito(productoId){
   console.log(carrito)
   actualizarProductosStorage();
   renderCarrito();
-  //mostrarProductos();
 
 };
 
@@ -39,11 +46,16 @@ const renderCarrito = () => {
   carrito.forEach((item) => {
     let div = document.createElement('div')
     div.innerHTML = `
-    <p>Producto: ${item.nombre}, Valor: ${item.valor}, Id: ${item.id}</p>  
+     <div class="row">
+    <div class="col-md-6">
+    <p>Producto: ${item.nombre}, Valor: ${item.valor}</p>  
+    </div>
+    <div class="col-md-6 d-flex align-items-end">
     <button onclick="eliminarItem(${item.id})">Eliminar del carrito</button> 
+    </div>
+    </div>
+    
     `
-
-
 
     ContenedorCarrito.append(div)
 
@@ -61,7 +73,16 @@ const eliminarItem = (id) => {
   carrito.splice(indice , 1)
   renderCarrito()
   calculartotal()
+
+  if (carrito.length != 0){
+    mostrarBotonDePago();
+  }
+  else{
+    ocultarBotonDePago();
+  }
+
   actualizarProductosStorage();
+
   
 
 }
@@ -75,6 +96,8 @@ calculartotal = () => {
 
 divPrecio.innerHTML = cont
 
+alert(cont)
+
 }
 
 
@@ -84,6 +107,8 @@ let formularioIdentificacion;
 let contenedorIdentificacion;
 let contenedorUsuario;
 let textoUsuario;
+let botonDePago;
+
 
 
 
@@ -123,9 +148,9 @@ function main(){
     
     btnLimpiarStorage=document.getElementById("limpiarStorage")
 
-    
 
     btnLimpiarStorage.onclick = eliminarStorage;
+
 
 
     formularioIdentificacion = document.getElementById("formularioIdentificacion")
@@ -133,6 +158,7 @@ function main(){
     contenedorIdentificacion = document.getElementById("contenedorIdentificacion")
     contenedorUsuario = document.getElementById("contenedorUsuario")
     textoUsuario = document.getElementById("TextoUsuario")
+    botonDePago = document.getElementById("botonDePago")
 
 
     formularioIdentificacion.onsubmit = (event) => identificarUsuario(event)
@@ -145,35 +171,23 @@ function main(){
       mostrarTextoUsuario()
     }
 
-    function mostrarTextoUsuario(){
-      contenedorIdentificacion.hidden = true
-      contenedorUsuario.hidden = false
-      alert("El nombre de usuario ingresado es " + usuario)
-      let textoUsuario = document.getElementById("textoUsuario")
-      textoUsuario.innerHTML += `${usuario} `
-    }
+
 
     function eliminarStorage(){
       localStorage.clear();
+      noMostrarTextoUsuario()
       carrito = []
       renderCarrito();
       calculartotal();
     }
 
     mostrarProductos();
+    obtenerUsuarioStorage();
     obtenerProductosStorage();
     
-
-    
+   
    
  }
-
-
- 
-
- 
-
-
 
 
 
@@ -202,22 +216,7 @@ function mostrarProductos(){
 Productos.forEach((producto) => {
     let columna = document.createElement("div");
     columna.className = "col-md-4 mt-3";
-    //columna.id = "columna" + producto.id;
     columna.nombre = `columna-${producto.nombre}`
-    //columna.innerHTML = `
-    //<div class="card" style="width: 18rem;">
-    //<img class="card-img-top" src="${producto.foto}" alt="Card image cap">
-    //<div class="card-body">
-    //  <h5 class="card-title">${producto.nombre}</h5>
-    //  <p class="card-text">ID: ${producto.id}</p>
-    //  <p class="card-text">Categoria: ${producto.categoria}</p>
-    //  <p class="card-text">Stock: ${producto.stock}</p>
-    //  <p class="card-text">Valor: ${producto.valor}</p>
-    //  <button onclick="guardarEnCarrito(${producto.id})" class="btn btn-primary">Añadir</button>
-//
-//    </div>
-//  </div>
-//    `
 
 
 columna.innerHTML = `
@@ -245,20 +244,12 @@ columna.innerHTML = `
 `
     contenedorProductos3.append(columna)
 
-
-    //function guardarEnCarrito(productoId){
-    //  alert("toy")
-    //  let item = Productos.find((producto)=> producto.id === productoId)
-    //  console.log("Antes")
-    //  console.log(carrito)
-    //  carrito.push(item)
-    //  console.log("Despues del push")
-    //  console.log(carrito)
-    //  actualizarProductosStorage();
-    
-    //  };
-
-
+    if (carrito.length != 0){
+      mostrarBotonDePago();
+    }
+    else{
+      ocultarBotonDePago();
+    }
 
 
 
@@ -288,6 +279,26 @@ function obtenerProductosStorage(){
     carrito = Productos
     renderCarrito();
   }
+}
+
+function mostrarTextoUsuario(){
+  contenedorIdentificacion.hidden = true
+  contenedorUsuario.hidden = false
+  let textoUsuario = document.getElementById("textoUsuario")
+  textoUsuario.innerHTML += `${usuario} `
+}
+
+function mostrarBotonDePago(){
+  botonDePago.hidden = false;
+}
+
+function ocultarBotonDePago(){
+  botonDePago.hidden = true;
+}
+
+function noMostrarTextoUsuario(){
+  contenedorIdentificacion.hidden = false
+  contenedorUsuario.hidden = true
 }
 
 
@@ -335,5 +346,15 @@ function mostrarMensajeConfirmacion(){
   .catch((error)=> console.log(error));
  }
 
+
+
+function JSalert(){
+	swal("Gracias por Preferirnos", "Usted será redirigido a la plataforma de Pago!", "success");
+}
+
+
+
+
 main();
 consultarProductosJSON();
+

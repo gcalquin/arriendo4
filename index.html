@@ -10,6 +10,10 @@
     <script src="/js/jquery-3.6.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -25,7 +29,7 @@
                 <p id="textoUsuario">Bienvenido:  </p>
             </div>
 
-           </div>
+          
 
            <div id="contenedorIdentificacion">
             <h2>Identificate</h2>
@@ -46,7 +50,7 @@
 
          </div>
 
-
+        </div>
         </div>
 
 
@@ -70,15 +74,20 @@
 
 <div id="contenedorCarrito"></div>
 
-<div id="contenedor"></div>
+<div id="contenedor" style="text-align:center"></div>
 
 <hr>
-<h3>Total</h3>
-<div id="precioTotal"></div>
+<h3 style="text-align:center">Total</h3>
+<div style="text-align:center" id="precioTotal"></div>
+<button onclick="JSalert()" id="botonDePago" hidden>Ir a pagar</button>
 <hr>
+
+
+
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script src="/scripts/script.js"></script>
+<script src="/scripts/numerosALetras.js"></script>
 
 
 </body>
