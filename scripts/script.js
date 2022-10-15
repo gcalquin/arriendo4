@@ -30,7 +30,6 @@ function guardarEnCarrito(productoId){
 
   
   
-  console.log("ahora queda en productos"+ Productos[item.id].stock)
   console.log(Productos)
   
   console.log(carrito)
@@ -48,7 +47,7 @@ const renderCarrito = () => {
     div.innerHTML = `
      <div class="row">
     <div class="col-md-6">
-    <p>Producto: ${item.nombre}, Valor: ${item.valor}</p>  
+       <p>Producto: ${item.nombre}, Valor: ${item.valor}</p>  
     </div>
     <div class="col-md-6 d-flex align-items-end">
     <button onclick="eliminarItem(${item.id})">Eliminar del carrito</button> 
@@ -94,9 +93,9 @@ calculartotal = () => {
     cont += item.valor
   })
 
-divPrecio.innerHTML = cont
+divPrecio.innerHTML = cont 
 
-alert(cont)
+
 
 }
 
@@ -227,13 +226,13 @@ columna.innerHTML = `
                 <img class="card-img-top" src="${producto.foto}" height="380" alt="Card image cap">
                 <div class="product-detail">
                     <h5 class="card-title heading text-center">${producto.nombre}</h5>
-                    <span class="subheading">Stock: ${producto.stock}</span>
+                    <span class="subheading">Valor unitario: ${producto.valor}</span>
+
                     <br>
-                    <span class="subheading">${producto.valor}</span>
                     <blockquote>
                    <p>${producto.descripcion}</p>
                     </blockquote>
-                    <button onclick="guardarEnCarrito(${producto.id})" class="btn btn-outline-dark">Arrendar</button>
+                    <button onclick="guardarEnCarrito(${producto.id})" class="btn btn-outline-dark">Agregar al carrito</button>
                    </div>
             </div>
         </div>
