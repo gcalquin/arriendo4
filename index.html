@@ -15,59 +15,84 @@
 
 
     <link rel="stylesheet" href="css/style.css">
+
+
+
 </head>
-<body>
+<body onload="myFunction()">
 
-    <div class="container">
-        <div class="row">
-           <div class="col-md-6">
+    
+
+<br>
+
+<div class="container">
+    <div class="row">
+       <div class="col-md-6">
+        <br>
+        <button id="limpiarStorage">Limpiar Storage</button>
+       </div> 
+
+       <div class="col-md-6">
+        <div id="contenedorUsuario" hidden>
             <br>
-            <button id="limpiarStorage">Limpiar Storage</button>
-           </div> 
-
-           <div class="col-md-6">
-            <div id="contenedorUsuario" hidden>
-                <br>
-                <p id="textoUsuario">Bienvenido:  </p>
-            </div>
-
-          
-
-           <div id="contenedorIdentificacion">
-            <h2>Usted esta navegando como Invitado</h2>
-            <form id="formularioIdentificacion" action="">
-                 <div class="row">
-                      <div class="col-md-6">
-                         <div>
-                            
-                             <label class="form-label">Ingrese su Nombre: </label>
-                             <input type="text" class="form-control" id="inputUsuario" required/>
-                         </div>
-                      </div>   
-                      <div class="col-md-6 d-flex align-items-end">
-                         <button type="submit">Identificarse</button>
-                      </div>
-                 </div>
-
-            </form>
-
-         </div>
-
-        </div>
+            <p id="textoUsuario">Bienvenido:  </p>
         </div>
 
+      
+
+       <div id="contenedorIdentificacion">
+        <h2>Usted esta navegando como Invitado</h2>
+        <form id="formularioIdentificacion" action="">
+             <div class="row">
+                  <div class="col-md-6">
+                     <div>
+                        
+                         <label class="form-label">Ingrese su Nombre: </label>
+                         <input type="text" class="form-control" id="inputUsuario" required/>
+                     </div>
+                  </div>   
+                  <div class="col-md-6 d-flex align-items-end">
+                     <button type="submit">Identificarse</button>
+                  </div>
+             </div>
+
+        </form>
+
+     </div>
 
     </div>
+    </div>
 
-<hr> 
+
+</div>
+<hr>
+<br><br>
 
 
-<h1 class="text-center">E-Commerce Productos de Terraza</h1>
+
+<div align="center"><img  src="/assets/logo/logo.png" alt=""></div>
+    
+
+    
+    
+
+
+
+    <!--<h1 class="text-center">E-Commerce Productos de Terraza</h1>-->
+
 <hr>
 
 
 
+<hr> 
 
+
+
+
+
+
+
+<br><br><br><br><br><br>
 <div> 
     <h3 style="text-align:center">Productos</h3>
     <div id="contenedor-productos3" class="row"></div>
@@ -78,6 +103,8 @@
 
 
 <h3 style="text-align:center">Carrito</h3>
+
+
 <hr>
 
 <div id="contenedorCarrito"></div>
@@ -87,7 +114,9 @@
 <hr>
 <h3 style="text-align:center">Total</h3>
 <br>
+<div style="text-align:center" id="mensajeDescuento"></div>
 <div style="text-align:center" id="precioTotal"></div>
+
 <div style="text-align:center">
     <br><br>
     <button onclick="JSalert()" id="botonDePago" hidden>Ir a pagar</button>
@@ -95,11 +124,9 @@
 <hr>
 
 
-
-
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script src="/scripts/script.js"></script>
-<script src="/scripts/numerosALetras.js"></script>
+
 
 
 </body>

@@ -87,15 +87,25 @@ const eliminarItem = (id) => {
 }
 
 const divPrecio = document.querySelector("#precioTotal")
+const divDescuento = document.querySelector("#mensajeDescuento")
+
 calculartotal = () => {
   let cont = 0
   carrito.forEach((item) => {
     cont += item.valor
   })
 
-divPrecio.innerHTML = cont 
-
-
+if (carrito.length <= 3 ) {
+  divPrecio.innerHTML = `<p>Total a Pagar </p> ` + cont 
+  mensajeDescuento.hidden = true
+} 
+else {
+  mensajeDescuento.hidden = false
+  divDescuento.innerHTML = `<p style="color:#FF0000">Promocion - Semana de Aniversario (Sobre 3 Productos se aplica un 15% de descuento) - Descuento ya aplicado - </p>`
+  divPrecio.innerHTML = `<p>Total a Pagar </p> ` + cont * 0.85
+  
+}
+  
 
 }
 
@@ -144,6 +154,8 @@ class Producto{
 
 
 function main(){
+
+
     
     btnLimpiarStorage=document.getElementById("limpiarStorage")
 
@@ -351,9 +363,18 @@ function JSalert(){
 	swal("Gracias por Preferirnos", "Usted será redirigido a la plataforma de Pago!", "success");
 }
 
+function myFunction() {
+  swal("Semana de Aniversario ", "Si llevas 4 o mas productos obten un  15% de descuento en el Total de tu compra", "info");
+}
 
 
 
 main();
 consultarProductosJSON();
+
+
+
+
+
+
 
